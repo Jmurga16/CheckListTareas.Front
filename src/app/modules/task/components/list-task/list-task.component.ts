@@ -100,8 +100,8 @@ export class ListTaskComponent implements OnInit {
     await this.taskService.fnServiceTask(nOpcion, pParametro).subscribe({
       next: () => {
 
+        this.txtTarea.setValue("");
         this.fnListTasks();
-
       },
       error: (e) => {
         console.error(e)
