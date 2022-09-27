@@ -5,6 +5,7 @@ import { MenuService } from '../../services/menu.service';
 import MenuData from '../../data/MenuData.json'
 import { FormControl } from '@angular/forms';
 import { Menu } from '../../models/Menu';
+import { AuthService } from 'src/app/modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -17,6 +18,7 @@ export class NavMenuComponent implements OnInit {
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
+  Username: string | null = ""
 
   checkedDemo = new FormControl(true);
 
@@ -24,11 +26,14 @@ export class NavMenuComponent implements OnInit {
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private router: Router,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private authService: AuthService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addEventListener('change', this._mobileQueryListener);
+
+    this.Username = localStorage.getItem("username")
   }
 
 
@@ -42,10 +47,7 @@ export class NavMenuComponent implements OnInit {
   //#region Inicializar
   ngOnInit(): void {
 
-    let listMenuData: any = MenuData
-    this.ListMenu = listMenuData
-
-    //this.fnListMenu()
+    this.fnListMenu()
 
     /* let demoStorage = localStorage.getItem("demo")
 
@@ -97,12 +99,12 @@ export class NavMenuComponent implements OnInit {
         },
         error: (e) => {
           console.error(e)
-        }       
+        }
       });
     }
     else {
-      //let listMenuData: any = MenuData
-      //this.ListMenu = listMenuData
+      let listMenuData: any = MenuData
+      this.ListMenu = listMenuData
     }
   }
   //#endregion
@@ -110,7 +112,7 @@ export class NavMenuComponent implements OnInit {
 
   //#region Cerrar Sesión
   fnLogout() {
-    this.router.navigate(['/','auth', 'login']);
+    this.authService.Logout();
   }
   //#endregion
 

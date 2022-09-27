@@ -1,0 +1,48 @@
+table {
+    width: 100%;
+}
+
+.header-app {
+    text-align: center;
+}
+
+.filtros {
+    display        : flex;
+    flex-direction : row;
+    flex-wrap      : wrap;
+    justify-content: center;
+}
+
+.example-button-row button,
+.example-button-row a {
+    margin-right: 0.5rem;
+}
+
+.example-container {
+    /*height: 38rem;*/
+    width   : 100%;
+    overflow: auto;
+}
+
+.clsBtnAdd {
+    margin-left: 1rem;
+    margin-top : 1.2rem;
+    float      : right;
+}
+
+.example-button-row button,
+.example-button-row a {
+    margin-right: 0.5rem;
+}
+
+.clsColumnDNI {
+    width: 30%;
+}
+
+.clsColumnNombre {
+    width: 50%;
+}
+
+.clsColumnaId {
+    width: 15%;
+}

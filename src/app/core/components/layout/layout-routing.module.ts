@@ -15,7 +15,7 @@ const routes: Routes = [
     },
 
     {
-        path: '**', redirectTo: 'login', pathMatch: 'full'
+        path: '**', redirectTo: 'auth/login', pathMatch: 'full'
     }
 ];
 

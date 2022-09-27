@@ -3,9 +3,10 @@
         Login
     </div>
 
-    <input placeholder="Usuario" type="text">
+    <input placeholder="Usuario" type="text" [formControl]="User">
 
-    <input placeholder="Contraseña" type="password">
+    <input placeholder="Contraseña" type="password" [formControl]="Password">
  
     <button mat-raised-button color="primary" (click)="fnLogin()">Ingresar</button>
+    
 </div>
