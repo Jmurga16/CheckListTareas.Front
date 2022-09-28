@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
 
   //#region Login
-  async fnLogin() {
+  async fnLoginBBDD() {
 
     let pParametro = [];
     let nOpcion = 1
@@ -35,9 +35,9 @@ export class LoginComponent implements OnInit {
     pParametro.push(this.User.value);
     pParametro.push(this.Password.value);
 
-    await this.authService.Login(nOpcion, pParametro).subscribe({
+    await this.authService.LoginBBDD(nOpcion, pParametro).subscribe({
       next: (data) => {
-        
+
         if (data.cod == 1) {
           localStorage.setItem("username", this.User.value)
           this.router.navigate(['/task']);
@@ -56,5 +56,31 @@ export class LoginComponent implements OnInit {
     });
   }
   //#endregion
+
+
+  //#region Login
+  async fnLogin() {
+
+    let sUsuario = this.User.value;
+    let sPassword = this.Password.value
+    let isValid: boolean = false
+
+    isValid = this.authService.Login(sUsuario, sPassword);
+
+    if (isValid) {
+      
+      this.router.navigate(['/task']);
+    }
+    else {
+      Swal.fire({
+        title: `Ingrese los datos correctamente.`,
+        icon: 'warning',
+        timer: 1500
+      });
+    }
+
+  }
+  //#endregion
+
 
 }

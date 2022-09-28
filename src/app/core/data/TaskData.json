@@ -1,0 +1,20 @@
+[
+    {
+        "nIdTask": 1,
+        "sNameTask": "Tarea 01",
+        "isDone": true,
+        "isActive": true
+    },
+    {
+        "nIdTask": 2,
+        "sNameTask": "Tarea 02",
+        "isDone": true,
+        "isActive": true
+    },
+    {
+        "nIdTask": 3,
+        "sNameTask": "Tarea 03",
+        "isDone": false,
+        "isActive": true
+    }
+]
