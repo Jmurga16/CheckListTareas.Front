@@ -26,6 +26,7 @@ export class ListTaskComponent implements OnInit {
     'sNameTask',
     'Actions'
   ];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -45,8 +46,8 @@ export class ListTaskComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //this.fnListTasks()
-    this.dataSource = new MatTableDataSource(TaskData);
+    this.fnListTasks()
+
 
   }
 
@@ -95,7 +96,7 @@ export class ListTaskComponent implements OnInit {
   }
   //#endregion
 
-  
+
   //#region Estado Checkbox
   async onChangeDone(IdTask: number, isDone: boolean) {
 
@@ -132,13 +133,12 @@ export class ListTaskComponent implements OnInit {
       return;
     }
 
-    console.log(IdTask)
     this.TaskDataLocal = this.TaskDataLocal.filter(element => element.nIdTask != IdTask);
     this.fnListTasks();
-    console.log(this.TaskDataLocal)
 
   }
   //#endregion
+
 
 
 
