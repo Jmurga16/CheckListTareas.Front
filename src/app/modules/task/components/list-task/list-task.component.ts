@@ -19,6 +19,7 @@ export class ListTaskComponent implements OnInit {
   txtTarea = new FormControl();
   sTitulo: string = "Lista de Tareas";
   dataSource: MatTableDataSource<any>;
+  modoLocal: boolean = false;
 
   displayedColumns: string[] = [
     'nIdTask',
@@ -46,8 +47,7 @@ export class ListTaskComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.fnListTasks()
-
+    this.fnListTasksBBDD()
 
   }
 
@@ -158,7 +158,8 @@ export class ListTaskComponent implements OnInit {
         this.dataSource.sort = this.sort;
       },
       error: (e) => {
-        console.error(e)
+        this.modoLocal = true;
+        this.fnListTasks();
       }
     });
 
@@ -168,6 +169,11 @@ export class ListTaskComponent implements OnInit {
 
   //#region Agregar Tareas
   async fnAddTaskBBDD() {
+
+    if (this.modoLocal) {
+      this.fnAddTask();
+      return
+    }
 
     let NameTask = this.txtTarea.value;
     let isDone = 0
@@ -186,7 +192,7 @@ export class ListTaskComponent implements OnInit {
         this.fnListTasks();
       },
       error: (e) => {
-        console.error(e)
+        this.fnAddTask();
       }
     });
 
@@ -196,6 +202,11 @@ export class ListTaskComponent implements OnInit {
 
   //#region Estado Checkbox
   async onChangeDoneBBDD(IdTask: number, isDone: boolean) {
+
+    if (this.modoLocal) {
+      this.onChangeDone(IdTask, isDone)
+      return
+    }
 
     let nOpcion = 3
     let pParametro: any = [];
@@ -209,7 +220,7 @@ export class ListTaskComponent implements OnInit {
 
       },
       error: (e) => {
-        console.error(e)
+        console.log(e);
       }
     });
 
@@ -219,6 +230,12 @@ export class ListTaskComponent implements OnInit {
 
   //#region Eliminar
   async onChangeStateBBDD(IdTask: number) {
+
+    if (this.modoLocal) {
+      this.onChangeState(IdTask);
+      return
+    }
+
     let sTitulo, sRespuesta: string = "";
 
     sTitulo = '¿Desea eliminar la tarea?'
@@ -255,7 +272,9 @@ export class ListTaskComponent implements OnInit {
         }
         this.fnListTasks();
       },
-      error: (e) => console.error(e),
+      error: (e) => {
+
+      }
       //complete: () => console.info('complete')
     });
 

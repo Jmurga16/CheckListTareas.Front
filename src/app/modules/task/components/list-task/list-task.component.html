@@ -22,7 +22,7 @@
         <!--Botón agregar-->
         <div class="col-md-1">
             <div class="example-button-row clsBtnAdd">
-                <button mat-raised-button color="primary" (click)="fnAddTask()">Agregar</button>
+                <button mat-raised-button color="primary" (click)="fnAddTaskBBDD()">Agregar</button>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
             <ng-container matColumnDef="isDone">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="clsColumnDone" id="Done"> Estado </th>
                 <td mat-cell *matCellDef="let element">
-                    <mat-checkbox [checked]="element.isDone" (change)="onChangeDone(element.nIdTask,element.isDone)">
+                    <mat-checkbox [checked]="element.isDone" (change)="onChangeDoneBBDD(element.nIdTask,element.isDone)">
                     </mat-checkbox>
                 </td>
             </ng-container>
@@ -59,7 +59,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="clsColumnaId" id="Action"> Acciones </th>
                 <td mat-cell *matCellDef="let element">
                     <div class="example-button-row " *ngIf="!element.isDone">
-                        <button mat-raised-button color="warn" (click)="onChangeState(element.nIdTask)">
+                        <button mat-raised-button color="warn" (click)="onChangeStateBBDD(element.nIdTask)">
                             <mat-icon>close</mat-icon>
                         </button>
                     </div>
